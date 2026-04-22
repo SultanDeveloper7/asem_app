@@ -3,10 +3,10 @@
 import { ChangeEvent, useState } from "react"
 import FormBody from "../components/FormBody";
 import Divider from "@mui/material/Divider";
-import CustomTextField from "@/app/shared/components/CustomTextField";
+import CustomTextField from "@/app/[locale]/shared/components/CustomTextField";
 import Typography from "@mui/material/Typography";
 import Link from "next/link";
-import CustomButton from "@/app/shared/components/CustomButton";
+import CustomButton from "@/app/[locale]/shared/components/CustomButton";
 
 export default function RegisterScreen() {
     const [formData, setFormData] = useState({

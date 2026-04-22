@@ -1,11 +1,17 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
-import { JwtService } from './app/shared/services/JwtServices';
+import { JwtService } from './app/[locale]/shared/services/JwtServices';
 import { TokenExpiredError } from 'jsonwebtoken';
-import createConn from './app/config/connectDb';
-import { PublicResponseType } from './app/shared/types/publicResponseType';
+import createConn from './app/[locale]/config/connectDb';
+import { PublicResponseType } from './app/[locale]/shared/types/publicResponseType';
 const publicRoutes = ['/login', '/register'];
 const privateRoutes = ['/dashboard', '/v1/user'];
+
+import createMiddleware from 'next-intl/middleware';
+import { routing } from './i18n/routing';
+
+export default createMiddleware(routing);
+
 export async function proxy(request: NextRequest) {
     const { pathname } = request.nextUrl;
 
@@ -83,6 +89,8 @@ export async function proxy(request: NextRequest) {
 }
 export const config = {
     matcher: [
+        '/',
+        '/(ar|en)/:path*',
         '/((?!api|_next/static|_next/image|favicon.ico).*)',
     ],
 }

@@ -1,13 +1,13 @@
 "use client"
 
-import CustomTextField from "@/app/shared/components/CustomTextField"
+import CustomTextField from "@/app/[locale]/shared/components/CustomTextField"
 import FormBody from "../components/FormBody"
-import CustomButton from "@/app/shared/components/CustomButton"
+import CustomButton from "@/app/[locale]/shared/components/CustomButton"
 import { ChangeEvent, useState } from "react"
 import { Divider, Typography } from "@mui/material"
 import Link from "next/link"
-import { HttpFetch } from "@/app/shared/functions/httpFetch"
-import { HttpApis } from "@/app/shared/apis"
+import { HttpFetch } from "@/app/[locale]/shared/functions/httpFetch"
+import { HttpApis } from "@/app/[locale]/shared/apis"
 import { useRouter } from 'next/navigation'
 
 export default function LoginScreen() {

@@ -1,6 +1,6 @@
-import createConn from "@/app/config/connectDb";
-import { AppErrorType } from "@/app/shared/types/AppErrorType";
-import { PublicResponseType } from "@/app/shared/types/publicResponseType";
+import createConn from "@/app/[locale]/config/connectDb";
+import { AppErrorType } from "@/app/[locale]/shared/types/AppErrorType";
+import { PublicResponseType } from "@/app/[locale]/shared/types/publicResponseType";
 import { QueryResult } from "mysql2";
 import { NextResponse } from "next/server";
 

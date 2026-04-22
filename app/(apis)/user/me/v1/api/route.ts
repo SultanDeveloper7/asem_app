@@ -1,7 +1,7 @@
-import createConn from "@/app/config/connectDb";
-import { JwtService } from "@/app/shared/services/JwtServices";
-import { UserType } from "@/app/shared/types/dbTablesTypes/userType";
-import { PublicResponseType } from "@/app/shared/types/publicResponseType";
+import createConn from "@/app/[locale]/config/connectDb";
+import { JwtService } from "@/app/[locale]/shared/services/JwtServices";
+import { UserType } from "@/app/[locale]/shared/types/dbTablesTypes/userType";
+import { PublicResponseType } from "@/app/[locale]/shared/types/publicResponseType";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest) {

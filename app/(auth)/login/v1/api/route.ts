@@ -1,11 +1,11 @@
-import createConn from "@/app/config/connectDb";
-import { JwtService } from "@/app/shared/services/JwtServices";
-import { AppErrorType } from "@/app/shared/types/AppErrorType";
-import { UserType } from "@/app/shared/types/dbTablesTypes/userType";
+import createConn from "@/app/[locale]/config/connectDb";
+import { JwtService } from "@/app/[locale]/shared/services/JwtServices";
+import { AppErrorType } from "@/app/[locale]/shared/types/AppErrorType";
+import { UserType } from "@/app/[locale]/shared/types/dbTablesTypes/userType";
 import { type NextRequest, NextResponse } from "next/server";
 import crypto from "crypto";
-import { PublicResponseType } from "@/app/shared/types/publicResponseType";
-import { JwtTokenReturn } from "@/app/shared/types/jwtTokenReturn";
+import { PublicResponseType } from "@/app/[locale]/shared/types/publicResponseType";
+import { JwtTokenReturn } from "@/app/[locale]/shared/types/jwtTokenReturn";
 import { cookies } from 'next/headers';
 
 export async function POST(req: NextRequest) {

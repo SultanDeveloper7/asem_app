@@ -1,13 +1,13 @@
 "use client"
 
-import { HttpApis } from "@/app/shared/apis";
-import { HttpFetch } from "@/app/shared/functions/httpFetch";
-import { CategoryType } from "@/app/shared/types/dbTablesTypes/categoryType";
+import { HttpApis } from "@/app/[locale]/shared/apis";
+import { HttpFetch } from "@/app/[locale]/shared/functions/httpFetch";
+import { CategoryType } from "@/app/[locale]/shared/types/dbTablesTypes/categoryType";
 import { Divider } from "@mui/material";
 import Image from "next/image";
 import { useEffect, useState } from "react"
 import SubCategorySelect from "./SubCategorySelect";
-import { SubCategoryType } from "@/app/shared/types/dbTablesTypes/subCategoryType";
+import { SubCategoryType } from "@/app/[locale]/shared/types/dbTablesTypes/subCategoryType";
 
 export default function CategorySelect() {
     const httpFetch = new HttpFetch();

@@ -1,7 +1,7 @@
-import CustomAppbar from '@/app/shared/components/CustomAppbar';
+import CustomAppbar from '@/app/[locale]/shared/components/CustomAppbar';
 import { cookies } from 'next/headers';
 import CategorySelect from './components/CategorySelect';
-import CustomFooter from '@/app/shared/components/CustomFooter';
+import CustomFooter from '@/app/[locale]/shared/components/CustomFooter';
 
 export default async function BrowseScreen() {
     const cookieStore = await cookies();

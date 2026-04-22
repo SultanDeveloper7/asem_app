@@ -1,4 +1,4 @@
-import CustomAppbar from "@/app/shared/components/CustomAppbar";
+import CustomAppbar from "@/app/[locale]/shared/components/CustomAppbar";
 import { cookies } from 'next/headers';
 import ItemSelect from "./components/ItemSelect";
 

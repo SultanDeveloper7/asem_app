@@ -1,4 +1,4 @@
-import { SubCategoryType } from "@/app/shared/types/dbTablesTypes/subCategoryType"
+import { SubCategoryType } from "@/app/[locale]/shared/types/dbTablesTypes/subCategoryType"
 import Image from "next/image";
 
 interface SubCategorySelectProps {

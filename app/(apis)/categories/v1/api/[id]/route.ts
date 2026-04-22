@@ -1,7 +1,7 @@
-import createConn from "@/app/config/connectDb";
-import { AppErrorType } from "@/app/shared/types/AppErrorType";
-import { SubCategoryType } from "@/app/shared/types/dbTablesTypes/subCategoryType";
-import { PublicResponseType } from "@/app/shared/types/publicResponseType";
+import createConn from "@/app/[locale]/config/connectDb";
+import { AppErrorType } from "@/app/[locale]/shared/types/AppErrorType";
+import { SubCategoryType } from "@/app/[locale]/shared/types/dbTablesTypes/subCategoryType";
+import { PublicResponseType } from "@/app/[locale]/shared/types/publicResponseType";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(_: NextRequest, { params }: { params: Promise<{ id: string }> }) {
