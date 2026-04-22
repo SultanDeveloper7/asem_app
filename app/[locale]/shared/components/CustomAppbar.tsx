@@ -8,6 +8,7 @@ import { HttpFetch } from '../functions/httpFetch';
 import { HttpApis } from '../apis';
 import { UserType } from '../types/dbTablesTypes/userType';
 import { HttpFetchType } from '../types/httpFetchType';
+import { Link } from '@/i18n/navigation';
 
 type CustomAppbarProps = {
     isLoggedIn: boolean
@@ -27,7 +28,6 @@ export default function CustomAppbar(props: CustomAppbarProps) {
         const httpFetch = new HttpFetch();
         const response: HttpFetchType<UserType> = await httpFetch.getRequest<UserType>(HttpApis.userDetailsApi);
         setUserDetails(response.data?.data)
-
     }
 
     return <div className="flex px-4 h-16 w-full bg-[#FFF0F3] justify-between fixed top-0 shadow-md z-1000">
@@ -43,7 +43,7 @@ export default function CustomAppbar(props: CustomAppbarProps) {
             <h5>الهدايا</h5>
         </div>
         <div className='flex gap-2 justify-center items-center h-full'>
-            <IconButton href={isLoggedIn ? '/user' : '/login'}>
+            <IconButton component={Link} href={isLoggedIn ? '/user' : '/login'}>
                 {userDetails ?
                     <Avatar alt={userDetails.user_name} src={`/uploads/${userDetails.user_avatar_path}`} />
                     : <AccountCircle fontSize='large' />}

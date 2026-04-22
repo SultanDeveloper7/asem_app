@@ -13,7 +13,7 @@ export interface JwtPayloadData {
 
 export class JwtService {
     private readonly secret = process.env.JWT_SECRET!;
-    private readonly expiresIn = "5m";
+    private readonly expiresIn = "10s";
 
     public async createNewToken(token: string, userAgent: string | undefined, refreshToken: string, conn: Connection): Promise<NewTokenResultType> {
         const payload = this.getPayloadDetails(token);
@@ -63,7 +63,7 @@ export class JwtService {
         }
     }
 
-    private getPayloadDetails(token: string): JwtPayloadData {
+    public getPayloadDetails(token: string): JwtPayloadData {
         const decoded = jwt.decode(token) as JwtPayloadData;
         return {
             userId: decoded.userId,
@@ -91,9 +91,12 @@ export class JwtService {
     }
 
     public verifyAccessToken(token: string): JwtPayloadData {
-        const payload = jwt.verify(token, this.secret) as JwtPayloadData;
-        return payload;
-
+        try {
+            const payload = jwt.verify(token, this.secret) as JwtPayloadData;
+            return payload;
+        } catch (error) {
+            throw error;
+        }
     }
 
     private async checkToken(payload: JwtPayloadData, conn: Connection): Promise<boolean> {

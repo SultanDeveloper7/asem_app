@@ -1,33 +1,46 @@
-import { NextResponse } from 'next/server'
-import type { NextRequest } from 'next/server'
-import { JwtService } from './app/[locale]/shared/services/JwtServices';
-import { TokenExpiredError } from 'jsonwebtoken';
-import createConn from './app/[locale]/config/connectDb';
-import { PublicResponseType } from './app/[locale]/shared/types/publicResponseType';
-const publicRoutes = ['/login', '/register'];
-const privateRoutes = ['/dashboard', '/v1/user'];
+import { NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
 
 import createMiddleware from 'next-intl/middleware';
 import { routing } from './i18n/routing';
 
-export default createMiddleware(routing);
+import { JwtService } from './app/[locale]/shared/services/JwtServices';
+import { TokenExpiredError } from 'jsonwebtoken';
+import createConn from './app/[locale]/config/connectDb';
+import { PublicResponseType } from './app/[locale]/shared/types/publicResponseType';
 
-export async function proxy(request: NextRequest) {
+const intlMiddleware = createMiddleware(routing);
+
+const publicRoutes = ['/login', '/register'];
+const privateRoutes = ['/dashboard', '/v1/user'];
+
+export default async function middleware(request: NextRequest) {
+    const intlResponse = intlMiddleware(request);
+    if (intlResponse && intlResponse.headers.get('location')) {
+        return intlResponse;
+    }
+
     const { pathname } = request.nextUrl;
-
     const accessToken = request.cookies.get('accessToken')?.value;
 
-    const isPublicRoute = publicRoutes.some(route => pathname.startsWith(route));
-    const isPrivateRoute = privateRoutes.some(route => pathname.startsWith(route));
+    const pathnameWithoutLocale = pathname.replace(/^\/(en|ar)/, '') || '/';
+    console.log(`The pathnamewithout locale: ${pathnameWithoutLocale}`);
+    const isPublicRoute = publicRoutes.some(route =>
+        pathnameWithoutLocale.startsWith(route)
+    );
+
+    const isPrivateRoute = privateRoutes.some(route =>
+        pathnameWithoutLocale.startsWith(route)
+    );
 
     if (isPublicRoute && accessToken) {
-        return NextResponse.redirect(new URL('/', request.url));
+        return NextResponse.redirect(new URL('/en', request.url));
     }
-
 
     if (isPrivateRoute && !accessToken) {
-        return NextResponse.redirect(new URL('/login', request.url));
+        return NextResponse.redirect(new URL('/en/login', request.url));
     }
+
     if (accessToken) {
         const jwtService = new JwtService();
         try {
@@ -39,8 +52,9 @@ export async function proxy(request: NextRequest) {
                 const userAgent = request.headers.get('user-agent');
 
                 if (!refreshToken || !userAgent) {
-                    return NextResponse.redirect(new URL('/login', request.url));
+                    return NextResponse.redirect(new URL('/en/login', request.url));
                 }
+
                 try {
                     const conn = await createConn();
                     const result = await jwtService.createNewToken(
@@ -70,27 +84,24 @@ export async function proxy(request: NextRequest) {
                         return response;
                     }
 
-                    return NextResponse.redirect(new URL('/login', request.url));
+                    return NextResponse.redirect(new URL('/en/login', request.url));
                 } catch (error) {
                     return NextResponse.json<PublicResponseType<string>>({
                         httpCode: 500,
                         status: "Error",
                         code: "INTERNAL_ERROR",
                         message: `${error}`
-                    })
+                    });
                 }
             }
 
-            // ✅ Handle other errors
-            return NextResponse.redirect(new URL('/login', request.url));
+            return NextResponse.redirect(new URL('/en/login', request.url));
         }
     }
+
     return NextResponse.next();
 }
+
 export const config = {
-    matcher: [
-        '/',
-        '/(ar|en)/:path*',
-        '/((?!api|_next/static|_next/image|favicon.ico).*)',
-    ],
-}
+    matcher: ['/((?!api|_next|.*\\..*).*)'],
+};

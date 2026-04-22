@@ -1,3 +1,22 @@
 {
-    "test": "TESTING"
+    "main": {
+        "laurn": "Laurn"
+    },
+    "homepage": {
+        "welcome": "Welcome to",
+        "welcome-desc": "Discover our luxurious collection of gifts and accessories designed specifically to express your identity and individuality.",
+        "shopnow": "Shop now"
+    },
+    "section-one": {
+        "women": "Women's Collection: Unparalleled Elegance",
+        "women-desc": "Discover true elegance with our luxurious collection designed specifically for the modern woman. From delicate accessories to statement pieces that accentuate your beauty, Laurent is here to inspire you for every occasion."
+    },
+    "section-two": {
+        "men": "Men's Collection: Distinction and Confidence",
+        "men-desc": "For the man who appreciates quality and attention to detail, we offer a collection of men's accessories and gifts that combine modern design with a timeless, classic touch, reflecting your refined taste."
+    },
+    "section-three": {
+        "kids": "Children's Collection: Magic and Smiles",
+        "kids-desc": "Make their moments special with our lovingly designed pieces for children. Safe and attractive accessories to add a touch of magic to their everyday look or special occasions."
+    }
 }

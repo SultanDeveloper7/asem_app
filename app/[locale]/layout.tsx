@@ -43,12 +43,13 @@ export default async function RootLayout({
   params: Promise<{ locale: string }>
 }) {
   const { locale } = await params;
-  if(!hasLocale(routing.locales, locale)) {
+  if (!hasLocale(routing.locales, locale)) {
     notFound();
   }
+  const isArabic = locale === "ar";
 
   return (
-    <html lang={"ar"} dir={"rtl"}>
+    <html lang={locale} dir={isArabic ? "rtl" : "ltr"}>
       <body
         className={`${cairo.variable} ${ubuntu.variable} ${geistSans.variable} ${geistMono.variable} font-sans antialiased`}
       >
