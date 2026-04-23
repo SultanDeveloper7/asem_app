@@ -19,6 +19,7 @@ export default async function middleware(request: NextRequest) {
     if (intlResponse && intlResponse.headers.get('location')) {
         return intlResponse;
     }
+    if(intlResponse) return intlResponse;
 
     const { pathname } = request.nextUrl;
     const accessToken = request.cookies.get('accessToken')?.value;

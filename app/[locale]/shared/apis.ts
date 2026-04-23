@@ -5,4 +5,5 @@ export class HttpApis {
     public static userDetailsApi: string = `/api/user/me/v1/`
     public static categoriesApi: string = `/api/categories/v1/`
     public static productsApi: string = `/api/items/v1/`
+    public static productApi: string = `/api/item/v1/`
 }

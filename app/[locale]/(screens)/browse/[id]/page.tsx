@@ -1,6 +1,7 @@
 import CustomAppbar from "@/app/[locale]/shared/components/CustomAppbar";
 import { cookies } from 'next/headers';
 import ItemSelect from "./components/ItemSelect";
+import CustomFooter from "@/app/[locale]/shared/components/CustomFooter";
 
 export default async function ItemBrowseScreen({ params }: { params: Promise<{ id: string }> }) {
     const cookieStore = await cookies();
@@ -10,5 +11,6 @@ export default async function ItemBrowseScreen({ params }: { params: Promise<{ i
     return <>
         <CustomAppbar isLoggedIn={isLoggedIn} />
         <ItemSelect id={id} />
+        <CustomFooter />
     </>
 }

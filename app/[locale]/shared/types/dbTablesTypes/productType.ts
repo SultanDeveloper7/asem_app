@@ -1,4 +1,6 @@
-export type ProductsType = {
+import { CategoryType } from "./categoryType"
+
+export type ProductType = CategoryType & {
     product_id: number,
     product_name: string,
     product_desc: string,
@@ -11,5 +13,4 @@ export type ProductsType = {
     sub_category_name: string,
     sub_category_name_ar: string,
     sub_category_name_code: string,
-    category_name_code: string
 }

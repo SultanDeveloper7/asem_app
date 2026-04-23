@@ -18,5 +18,15 @@
     "section-three": {
         "kids": "Children's Collection: Magic and Smiles",
         "kids-desc": "Make their moments special with our lovingly designed pieces for children. Safe and attractive accessories to add a touch of magic to their everyday look or special occasions."
+    },
+    "footer": {
+        "text": "Where elegance becomes identity. We offer you the most exquisite gifts and accessories designed to reflect your inner beauty and uniqueness.",
+        "customer-service": "Customer service",
+        "us": "Who are we",
+        "questions": "Frequently asked questions",
+        "request": "How to order",
+        "policy": "privacy policy",
+        "contact-us": "Contact us",
+        "copyrights": "© 2026 All rights reserved to LURAN store."
     }
 }
